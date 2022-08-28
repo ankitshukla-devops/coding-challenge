@@ -1,0 +1,14 @@
+def listvalue(obj, key, flag):
+    flag = False
+    if type(obj) is not dict and not flag:
+        return None
+    if (flag or (key in obj.keys())) :
+        if type(obj[key]) is dict:
+            return listvalue(obj[key], key, True)
+    else:
+        return listvalue(obj[key], key, False)
+
+if __name__ == '__main__':
+    obj = {'a': {'b': {'c': 'd'}}}
+    value = listvalue(obj, 'c', False)
+    print(value)
